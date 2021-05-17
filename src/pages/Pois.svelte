@@ -1,6 +1,13 @@
 <script>
     import PoiList from "../components/PoiList.svelte";
     import tramore2 from "/src/assets/tramore2.jpg";
+    import {navBar, mainBar, subTitle, title} from "../stores"
+
+    title.set("Keep Calm and go to the Beach");
+    subTitle.set("So far...");
+    navBar.set({
+        bar: mainBar
+    });
 </script>
 
 <div class="uk-text-center" uk-grid>
