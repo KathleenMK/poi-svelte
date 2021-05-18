@@ -5,17 +5,23 @@
   import Login from "./pages/Login.svelte";
   import Categories from "./pages/Categories.svelte";
   import Pois from "./pages/Pois.svelte";
+  import AddPoi from "./pages/AddPoi.svelte";
+  import Settings from "./pages/Settings.svelte";
+  import Signup from "./pages/Signup.svelte";
   import Navigator from "./components/Navigator.svelte";
   import Router from "svelte-spa-router";
 
   setContext("PoiService", new PoiService("http://localhost:4000"));
-  //`https://lit-hamlet-10675.herokuapp.com/api/categories`; need cors support
+  //setContext("PoiService", new PoiService("https://lit-hamlet-10675.herokuapp.com")); //needed cors support
 
   let routes = {
     "/" : Main,
     "/login": Login,
     "/categories": Categories,
     "/pois": Pois,
+    "/addpoi": AddPoi,
+    "/settings": Settings,
+    "/signup": Signup,
     "/logout": Main
   }
 </script>
