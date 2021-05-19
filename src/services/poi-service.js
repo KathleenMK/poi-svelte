@@ -8,8 +8,8 @@ export class PoiService {
 
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
-        if (localStorage.donation) {
-            axios.defaults.headers.common["Authorization"] = "Bearer " + JSON.parse(localStorage.donation);
+        if (localStorage.poi) {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + JSON.parse(localStorage.poi);
         }
     }
 
@@ -42,7 +42,7 @@ export class PoiService {
                     email: email,
                     token: response.data.token
                 });
-                localStorage.donation = JSON.stringify(response.data.token);
+                localStorage.poi = JSON.stringify(response.data.token);
                 return true;
             }
             return false;
@@ -105,6 +105,7 @@ export class PoiService {
                 password: password,
                 _id: id
             };
+            console.log(id);
             console.log(userDetails);
             const response = await axios.put(`${this.baseUrl}/api/users/${id}`, userDetails);
             console.log(response.data)
@@ -124,7 +125,7 @@ export class PoiService {
             token: ""
         });
         axios.defaults.headers.common["Authorization"] = "";
-        localStorage.donation = null;
+        localStorage.poi = null;
     }
 
     /*
@@ -140,5 +141,20 @@ export class PoiService {
     }
 
      */
+    async deletePoi(id) {
+        try {
+            console.log("in the poi-service deletePOi")
+            const response = await axios.delete(`${this.baseUrl}/api/pois/${id}`);
+            console.log(response.data)
+            //const newUser = await response.data;
+            //console.log(newUser);
+            //user.set(userDetails);  //should this update only if response success is true?
+            //console.log(user);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
 
 }
