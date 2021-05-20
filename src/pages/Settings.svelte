@@ -3,8 +3,8 @@
     import tramore1 from "/src/assets/tramore1.jpg";
     import SettingsForm from "../components/SettingsForm.svelte";
 
-    title.set("Donation Services Inc");
-    subTitle.set("Edits and then save your settings");
+    title.set("Keep Calm and go to the Beach...");
+    subTitle.set("Update your settings");
 
     navBar.set({
         bar: mainBar

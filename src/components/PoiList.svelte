@@ -1,14 +1,17 @@
 <script>
     import {getContext, onMount} from 'svelte'
+    import {push} from "svelte-spa-router";
 
     const poiService = getContext("PoiService");
     let poiList = [];
     let id = "";
     let errorMessage = "";
+    let poi = "";
 
 
     onMount(async () => {
         poiList = await poiService.getPois();
+        console.log("in poi list onMount");
     });
 
     async function deleteHandler(id) {
@@ -18,6 +21,17 @@
 
         } else {
             errorMessage = "Deletion of POI not completed - some error occurred";
+        }
+    }
+
+    async function showPoi(id) {
+        poi = await poiService.getOnePoi(id)
+        if (poi) {
+            await push("/viewpoi");
+            //return poi;
+
+        } else {
+            errorMessage = "POI not completed - some error occurred";
         }
     }
 
@@ -32,7 +46,7 @@
             Name
         </th>
         <th>
-            Description
+            Intro
         </th>
         <th>
             Category
@@ -44,12 +58,12 @@
         <tbody class="uk-text-left">
         {#each poiList as poi}
             <tr>
-                <td>
+                <td><a on:click={showPoi(poi._id)}>
                     {poi.name}
-                </td>
-                <td>
-                    {poi.description}
-                </td>
+                </a></td>
+                <td><a on:click={showPoi(poi._id)}>
+                    {poi.descshort}
+                </a></td>
                 <td>
                     {poi.category.name}
                 </td>
@@ -57,8 +71,7 @@
                     {poi.contributor.firstName}, {poi.contributor.lastName}
                 </td>
                 <td>
-                    {poi._id}
-                    <button on:click={deleteHandler(poi._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
+                   <button on:click={deleteHandler(poi._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
                 </td>
             </tr>
         {/each}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {user} from "../stores";
+import {poi} from "../stores"
 
 export class PoiService {
     categoryList = [];
@@ -33,6 +34,19 @@ export class PoiService {
         }
     }
 
+    async getOnePoi(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/pois/"+id)
+            this.poi = await response.data;
+            poi.set({
+                id: id
+            })
+            return this.poi;
+        } catch (error) {
+           // return [];
+        }
+    }
+
     async login(email, password) {
         try {
             const response = await axios.post(`${this.baseUrl}/api/users/authenticate`, {email, password});
@@ -40,7 +54,11 @@ export class PoiService {
             if (response.data.success) {
                 user.set({
                     email: email,
-                    token: response.data.token
+                    token: response.data.token,
+                    id: response.data.id,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    password: response.data.password
                 });
                 localStorage.poi = JSON.stringify(response.data.token);
                 return true;
@@ -78,6 +96,32 @@ export class PoiService {
             return false;
         }
     }
+
+    async updatePoi(name, descshort, description, latitude, longitude, id){
+        try {
+            const poiDetails = {
+                name: name,
+                descshort: descshort,
+                description: description,
+                latitude: latitude,
+                longitude: longitude,
+                _id: id
+            };
+            console.log(id);
+            console.log(poiDetails);
+            const response = await axios.put(`${this.baseUrl}/api/pois/${id}`, poiDetails);
+            console.log(response.data)
+            //const newUser = await response.data;
+            //console.log(newUser);
+            //user.set(userDetails);  //should this update only if response success is true?
+            //console.log(user);
+            return true;
+        } catch (error) {
+            return false;
+        }
+
+
+}
 
     async signup(firstName, lastName, email, password) {
         try {

@@ -5,6 +5,7 @@
   import Login from "./pages/Login.svelte";
   import Categories from "./pages/Categories.svelte";
   import Pois from "./pages/Pois.svelte";
+  import ViewPoi from "./pages/ViewPoi.svelte"
   import AddPoi from "./pages/AddPoi.svelte";
   import Settings from "./pages/Settings.svelte";
   import Signup from "./pages/Signup.svelte";
@@ -19,6 +20,7 @@
     "/login": Login,
     "/categories": Categories,
     "/pois": Pois,
+    "/viewpoi": ViewPoi,
     "/addpoi": AddPoi,
     "/settings": Settings,
     "/signup": Signup,
