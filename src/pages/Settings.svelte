@@ -3,7 +3,7 @@
     import tramore1 from "/src/assets/tramore1.jpg";
     import SettingsForm from "../components/SettingsForm.svelte";
 
-    title.set("Keep Calm and go to the Beach...");
+    title.set("Keep Calm and go to the Beach ");
     subTitle.set("Update your settings");
 
     navBar.set({

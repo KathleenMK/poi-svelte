@@ -18,22 +18,27 @@ export const welcomeBar = [
 export const mainBar = [{
     title: "Report",
     icon: "fas fa-umbrella-beach fa-3x",
-    colour: "color:rgb(63, 122, 139)",
+    colour: "color:rgb(6, 66, 115)",
     link: "/#/pois",
 }, {
+    title: "Poi Map",
+    icon: "fas fa-globe-europe fa-3x",
+    colour: "color:rgb(118,182,196)",
+    link: "/#/map",
+},{
     title: "Add POI",
     icon: "fas fa-plus-square fa-3x",
-    colour: "color:rgb(153, 196, 74)",
+    colour: "color:rgb(127,205,255)",
     link: "/#/addpoi",
 }, {
     title: "Settings",
     icon: "fas fa-user-edit fa-3x",
-    colour: "color:rgb(14, 168, 160)",
+    colour: "color:rgb(29,162,216)",
     link: "/#/settings",
 }, {
     title: "Logout",
     icon: "fas fa-sign-out-alt fa-3x",
-    colour: "color:rgb(156, 70, 128)",
+    colour: "color:rgb(249, 209, 153)",
     link: "/#/logout",
 }];
 

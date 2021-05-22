@@ -34,6 +34,16 @@ export class PoiService {
         }
     }
 
+    async getImages() {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/pois/images")
+            this.imageList = await response.data;
+            return this.imageList;
+        } catch (error) {
+            return [];
+        }
+    }
+
     async getUsers() {
         try {
             const response = await axios.get(this.baseUrl + "/api/users")
