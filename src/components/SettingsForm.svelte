@@ -1,19 +1,29 @@
 <script lang="ts">
-    import {getContext} from "svelte";
+    import {getContext, onMount} from "svelte";
     import {user} from "../stores";
+    import {push} from "svelte-spa-router";
 
     let firstName = $user.firstName;
     let lastName = $user.lastName;
     let email = $user.email;
     let password = $user.password
     let message = "";
+    let id = $user.id;
+    console.log($user);
+    console.log(lastName);
 
     const poiService = getContext("PoiService");
 
+    onMount(async () => {
+        console.log($user);
+        console.log(lastName);
+    });
+
     async function save() {
-        let success = await poiService.updateSettings(firstName, lastName, email, password, $user._id)
+        let success = await poiService.updateSettings(firstName, lastName, email, password, $user.id)
         if (success) {
             message = "Settings updated";
+            await push("/pois");
         } else {
             message = "Error Trying to save settings";
         }

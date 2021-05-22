@@ -39,7 +39,19 @@ export const mainBar = [{
 
 export const user = writable({
     email: "",
-    token: ""
+    token: "",
+    id:"",
+    firstName:"",
+    lastName: "",
+    password: ""
+});
+
+export const poi = writable({
+    id: ""
+});
+
+export const category = writable({
+    id: ""
 });
 
 export const navBar = writable({

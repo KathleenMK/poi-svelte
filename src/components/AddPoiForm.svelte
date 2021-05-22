@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount, getContext } from "svelte";
+    import {push} from "svelte-spa-router";
     const poiService = getContext("PoiService");
 
     let categoryList = [];
@@ -18,6 +19,7 @@
     async function addPoi() {
         const success = await poiService.addPoi(name, descshort, description, latitude, longitude, categoryList[selectedCategory])
         if (success) {
+            await push("/pois");
 
         } else {
             errorMessage = "Addition of POI not completed - some error occurred";
