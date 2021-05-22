@@ -11,10 +11,12 @@
 
 
     onMount(async () => {
-        poiList = await poiService.getPois();
-        console.log("in poi list onMount");
+        poiList = await poiService.getCategoryPois($category.id);
+        console.log("in poi list by Category");
         console.log(poiList);
     });
+
+   // $: poiList = poiService.getCategoryPois($category.id);
 
     async function deleteHandler(id) {
         const success = await poiService.deletePoi(id)
@@ -75,7 +77,7 @@
                     {poi.contributor.firstName}, {poi.contributor.lastName}
                 </td>
                 <td>
-                   <button on:click={deleteHandler(poi._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
+                    <button on:click={deleteHandler(poi._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
                 </td>
             </tr>
         {/each}

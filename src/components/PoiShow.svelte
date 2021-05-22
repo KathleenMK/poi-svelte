@@ -11,13 +11,22 @@
     let message = "";
     console.log($user._id);
     let poiView = {
-        name:"",
-        description: "",
-        descshort: "",
-        latitude: "",
-        longitude: "",
-        category: {},
-        contributor:{}
+       poi: {name:"",
+            description: "",
+            descshort: "",
+            latitude: "",
+            longitude: "",
+            category: {},
+            contributor:{},},
+        weather: {
+            temperature: "",
+            feelsLike: "",
+            clouds: "",
+            windSpeed: "",
+            windDirection: "",
+            visibility: "",
+            humidity: ""
+        }
     };
     let category = {};
     let contributor = {};
@@ -26,19 +35,34 @@
     let descshort = "";
     let latitude = "";
     let longitude = "";
+    //let weather = {};
+    let clouds = "";
+    let temperature = "";
+    let feelsLike = "";
+    let windSpeed = "";
+    let humidity = "";
+    let categoryList = [];
+    let selectedCategory = 0;
 
     const poiService = getContext("PoiService");
 
     onMount(async () => {
         poiView = await poiService.getOnePoi($poi.id);
-        name = poiView.name;
-        description = poiView.description;
-        descshort = poiView.descshort;
-        latitude = poiView.latitude;
-        longitude = poiView.longitude;
-        category = poiView.category;
-        contributor = poiView.contributor;
+        name = poiView.poi.name;
+        description = poiView.poi.description;
+        descshort = poiView.poi.descshort;
+        latitude = poiView.poi.latitude;
+        longitude = poiView.poi.longitude;
+        category = poiView.poi.category;
+        contributor = poiView.poi.contributor;
+        clouds = poiView.weather.clouds;
+        temperature = poiView.weather.temperature;
+        feelsLike = poiView.weather.feelsLike;
+        windSpeed = poiView.weather.windSpeed;
+        humidity = poiView.weather.humidity;
         console.log(poiView);
+        categoryList = await poiService.getCategories();
+        console.log(categoryList);
     });
 
     //const poi = await poiService.getOnePoi($poi.id)
@@ -46,7 +70,7 @@
 
     async function save() {
         console.log(name, descshort, description, latitude, longitude, $poi.id)
-        let success = await poiService.updatePoi(name, descshort, description, latitude, longitude, $poi.id)
+        let success = await poiService.updatePoi(name, descshort, description, latitude, longitude, $poi.id, categoryList[selectedCategory])
         if (success) {
             message = "Settings updated";
             //await push("/pois");
@@ -62,7 +86,7 @@
     </div>
     <div class="uk-text-center uk-flex-center uk-flex-middle" uk-grid>
         <div class="uk-width-2-3">
-            <div class="uk-card uk-card-default uk-card-body"><img src="{poiView.imageurl}"></div>
+            <div class="uk-card uk-card-default uk-card-body"><img src="{poiView.poi.imageurl}"></div>
         </div>
         <div class="uk-width-1-3">
             <div class="uk-card uk-card-default uk-card-body">{description}</div>
@@ -70,7 +94,12 @@
     </div>
     <div class="uk-text-left uk-flex-center uk-flex-top" uk-grid>
         <div class="uk-width-2-5">
-            <div class="uk-card uk-card-small uk-card-default uk-card-body">{"weather"}</div>
+            <h4>Current weather:</h4>
+            <p>Clouds: {clouds}</p>
+            <p>Temperature: {temperature}C</p>
+            <p>Feels like: {feelsLike}C</p>
+            <p>Wind Speed: {windSpeed}</p>
+            <p>Humidity: {humidity}%</p>
         </div>
 
         <div class="uk-width-2-5">
@@ -116,6 +145,18 @@
             <div class="uk-inline uk-width-1-1">
                 <input bind:value={longitude} class="uk-input uk-form-large" type="number" step="any" name="longitude">
             </div>
+        </div>
+    </div>
+    <div class="uk-margin uk-text-left">
+        <div class="uk-form-label">Select Category </div>
+        <div class="uk-form-controls ">
+            {#each categoryList as category, i}
+                <label>
+                    <input bind:group={selectedCategory} value={i} class="uk-radio" type="radio" name="category" />
+                    {category.name}
+                </label>
+                <br>
+            {/each}
         </div>
     </div>
     <div class="uk-margin">

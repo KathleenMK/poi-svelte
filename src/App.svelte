@@ -7,6 +7,8 @@
   import Pois from "./pages/Pois.svelte";
   import ViewPoi from "./pages/ViewPoi.svelte"
   import AddPoi from "./pages/AddPoi.svelte";
+  import AddCategory from "./pages/AddCategory.svelte";
+  import ViewCategory from "./pages/ViewCategory.svelte";
   import Settings from "./pages/Settings.svelte";
   import Signup from "./pages/Signup.svelte";
   import Navigator from "./components/Navigator.svelte";
@@ -22,6 +24,8 @@
     "/pois": Pois,
     "/viewpoi": ViewPoi,
     "/addpoi": AddPoi,
+    "/categoryform": AddCategory,
+    "/viewcategory": ViewCategory,
     "/settings": Settings,
     "/signup": Signup,
     "/logout": Main

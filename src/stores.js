@@ -50,6 +50,10 @@ export const poi = writable({
     id: ""
 });
 
+export const category = writable({
+    id: ""
+});
+
 export const navBar = writable({
     bar: [],
 });

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {user} from "../stores";
+import {user, category} from "../stores";
 import {poi} from "../stores"
 
 export class PoiService {
@@ -34,6 +34,16 @@ export class PoiService {
         }
     }
 
+    async getUsers() {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/users")
+            this.userList = await response.data;
+            return this.userList;
+        } catch (error) {
+            return [];
+        }
+    }
+
     async getOnePoi(id) {
         try {
             const response = await axios.get(this.baseUrl + "/api/pois/"+id)
@@ -41,9 +51,38 @@ export class PoiService {
             poi.set({
                 id: id
             })
+            console.log(response.data);
             return this.poi;
         } catch (error) {
            // return [];
+        }
+    }
+
+    async getOneCategory(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/categories/"+id)
+            this.category = await response.data;
+            category.set({
+                id: id
+            })
+            console.log(response.data);
+            return this.category;
+        } catch (error) {
+            // return [];
+        }
+    }
+
+    async getCategoryPois(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/categories/"+id+"/pois")
+            this.poiCategoryList = await response.data;
+            category.set({
+                id: id
+            })
+            console.log(response.data);
+            return this.poiCategoryList;
+        } catch (error) {
+            return [];
         }
     }
 
@@ -97,7 +136,22 @@ export class PoiService {
         }
     }
 
-    async updatePoi(name, descshort, description, latitude, longitude, id){
+    async addCategory(name, description) {
+        try {
+            const category = {
+                name: name,
+                description: description,
+            };
+            console.log(category);
+            const response = await axios.post(this.baseUrl + "/api/categories", category);
+            console.log(response);
+            return response.status == 200;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async updatePoi(name, descshort, description, latitude, longitude, id, category){
         try {
             const poiDetails = {
                 name: name,
@@ -105,7 +159,8 @@ export class PoiService {
                 description: description,
                 latitude: latitude,
                 longitude: longitude,
-                _id: id
+                _id: id,
+                category: category
             };
             console.log(id);
             console.log(poiDetails);
@@ -132,10 +187,21 @@ export class PoiService {
                 password: password,
             };
             const response = await axios.post(this.baseUrl + "/api/users", userDetails);
-            const newUser = await response.data;
-            user.set(newUser);
-            return true;
-        } catch (error) {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+            if (response.data.success) {
+                user.set({
+                    email: email,
+                    token: response.data.token,
+                    id: response.data.id,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    password: response.data.password
+                });
+                localStorage.poi = JSON.stringify(response.data.token);
+                return true;
+            }
+            return false;
+        }catch (error) {
             return false;
         }
     }
@@ -166,7 +232,9 @@ export class PoiService {
     async logout() {
         user.set({
             email: "",
-            token: ""
+            token: "",
+            firstName: "",
+            lastName: ""
         });
         axios.defaults.headers.common["Authorization"] = "";
         localStorage.poi = null;

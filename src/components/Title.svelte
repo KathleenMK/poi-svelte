@@ -14,7 +14,7 @@
         </div>
         <div class="uk-width-expand@m uk-text-left">
             <div class="title">
-                {$title}
+                {$title} {$user.firstName}
             </div>
             <div class="uk-text-muted uk-text-small">
                 {$subTitle}
@@ -24,7 +24,6 @@
             <a target="_blank" href="https://beachawards.ie/blue-flag/sites/">
                 <div>
                     <i class="fas fa-flag fa-3x" style="color:rgb(26,128,182)" title="Beach Awards" pos="bottom" uk-tooltip></i>
-                    {$user.email}
                 </div>
             </a>
         </div>
