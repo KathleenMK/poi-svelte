@@ -2,6 +2,8 @@
     import {title, subTitle, navBar, welcomeBar} from "../stores"
     import tramore2 from "/src/assets/tramore2.jpg";
     import {getContext} from "svelte";
+    import Images from "../components/Images.svelte";
+
     const poiService = getContext("PoiService");
 
     title.set("Keep Calm and go to the Beach");
@@ -18,5 +20,5 @@
     <h2>and where to find them</h2>
 </div>
 <div class="uk-container uk-padding-small">
-
+    <Images/>
 </div>

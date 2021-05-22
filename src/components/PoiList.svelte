@@ -69,10 +69,14 @@
                     {poi.descshort}
                 </a></td>
                 <td>
+                    {#if poi.category}
                     {poi.category.name}
+                        {/if}
                 </td>
                 <td>
+                    {#if poi.contributor}
                     {poi.contributor.firstName}, {poi.contributor.lastName}
+                        {/if}
                 </td>
                 <td>
                    <button on:click={deleteHandler(poi._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>

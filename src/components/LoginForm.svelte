@@ -9,12 +9,20 @@
 
     async function login() {
         let success = await poiService.login(email, password)
+        console.log(success);
+
         if (success) {
             await push("/pois");
         } else {
-            email = "";
-            password = "";
-            errorMessage = "Invalid Credentials";
+            let success = await poiService.adminlogin(email, password)
+            console.log(success);
+            if (success) {
+                await push("/admin");
+            } else {
+                email = "";
+                password = "";
+                errorMessage = "Invalid Credentials";
+            }
         }
     }
     //async function login() {
