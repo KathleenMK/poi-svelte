@@ -3,7 +3,7 @@
     import {navBar, mainBar, subTitle, title} from "../stores"
     import AddPoiForm from "../components/AddPoiForm.svelte";
 
-    title.set("Keep Calm and go to the Beach");
+    title.set("Keep Calm and go to the Beach ");
     subTitle.set("Add Something!");
     navBar.set({
         bar: mainBar
