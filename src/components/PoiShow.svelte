@@ -169,6 +169,22 @@
     {/if}
 </form>
 
+<div class="uk-card uk-card-small uk-card-secondary uk-card-body">
+    <h3 class="uk-card-title">Upload an Image:</h3>
+    <form class="uk-form-horizontal" action="/uploadfile/{$poi.id}" method="POST" enctype="multipart/form-data">
+        <div class="uk-margin">
+            <label class="uk-form-label" >Select Image</label>
+            <div class="uk-form-controls">
+                <input type="file" class="uk-input" name="imagefile" accept="image/png, image/jpeg">
+            </div>
+        </div>
+        <p uk-margin>
+            <input type="submit" value="Upload" class="uk-button uk-button-default">
+        </p>
+    </form>
+</div>
+
+
 
 
 

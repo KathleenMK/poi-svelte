@@ -107,6 +107,29 @@ export class PoiService {
             return false;
         }
     }
+
+    async adminlogin(email, password) {
+        try {
+            const response = await axios.post(`${this.baseUrl}/api/adminusers/authenticate`, {email, password});
+            axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+            console.log(response);
+            if (response.data.success) {
+                user.set({
+                    email: email,
+                    token: response.data.token,
+                    id: response.data.id,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    password: response.data.password
+                });
+                localStorage.poi = JSON.stringify(response.data.token);
+                return true;
+            }
+            return false;
+        } catch (error) {
+            return false;
+        }
+    }
     /*
     async login(email, password) {
         try {
@@ -257,6 +280,36 @@ export class PoiService {
         try {
             console.log("in the poi-service deletePOi")
             const response = await axios.delete(`${this.baseUrl}/api/pois/${id}`);
+            console.log(response.data)
+            //const newUser = await response.data;
+            //console.log(newUser);
+            //user.set(userDetails);  //should this update only if response success is true?
+            //console.log(user);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async deleteUser(id) {
+        try {
+            console.log("in the poi-service deleteUser")
+            const response = await axios.delete(`${this.baseUrl}/api/users/${id}`);
+            console.log(response.data)
+            //const newUser = await response.data;
+            //console.log(newUser);
+            //user.set(userDetails);  //should this update only if response success is true?
+            //console.log(user);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async deleteCategory(id) {
+        try {
+            console.log("in the poi-service deleteCategory")
+            const response = await axios.delete(`${this.baseUrl}/api/categories/${id}`);
             console.log(response.data)
             //const newUser = await response.data;
             //console.log(newUser);
