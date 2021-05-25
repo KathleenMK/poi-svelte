@@ -1,6 +1,5 @@
 <script>
     import {getContext, onMount} from 'svelte'
-    import {push} from "svelte-spa-router";
     import tramore1 from "/src/assets/tramore1.jpg";
 
 
@@ -8,14 +7,11 @@
     let poiList = [];
     let categoryList = [];
     let userList = [];
-    let id = "";
-    let errorMessage = "";
-    let poi = "";
     let poiCount = 0;
     let userCount = 0;
     let categoryCount = 0;
 
-
+    // getting the count of pois, categories and users for display
     onMount(async () => {
         poiList = await poiService.getPois();
         poiCount = poiList.length;

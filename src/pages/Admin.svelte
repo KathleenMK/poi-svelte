@@ -1,6 +1,4 @@
 <script>
-    import PoiList from "../components/PoiList.svelte";
-    import CategoryList from "../components/CategoryList.svelte";
     import {navBar, adminBar, subTitle, title} from "../stores"
     import AnalyticsHeader from "../components/AnalyticsHeader.svelte";
     import UserAdmin from "../components/UserAdmin.svelte";

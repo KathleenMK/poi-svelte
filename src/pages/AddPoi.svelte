@@ -10,15 +10,12 @@
     });
 </script>
 
-<div class="uk-flex-middle uk-text-center" uk-grid>
-    <div class="uk-width-1-2@m ">
-        <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large uk-width-2xlarge ">
-            <img width="300" src="{tramore1}" alt="homer">
-        </div>
-    </div>
-    <div class="uk-width-1-2@m ">
-        <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large uk-width-2xlarge ">
-            <AddPoiForm/>
-        </div>
+
+<div class="uk-height-small uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="{tramore1}" uk-img>
+    <h1>Add New Beach details...</h1>
+</div>
+<div class="uk-container uk-margin">
+    <div class="uk-child-width-2-3 uk-flex-center uk-flex-middle uk-text-center" uk-grid>
+       <AddPoiForm />
     </div>
 </div>

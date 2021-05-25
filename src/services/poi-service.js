@@ -96,6 +96,17 @@ export class PoiService {
         }
     }
 
+    async getReviewsPoi(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/reviews/"+id+"/pois")
+            this.poiReviewList = await response.data;
+            console.log(response.data);
+            return this.poiReviewList;
+        } catch (error) {
+            return [];
+        }
+    }
+
     async login(email, password) {
         try {
             const response = await axios.post(`${this.baseUrl}/api/users/authenticate`, {email, password});
@@ -169,6 +180,21 @@ export class PoiService {
         }
     }
 
+    async addReview(text, rating, id) {
+        try {
+            console.log("in add review, poi service")
+            const review = {
+                text: text,
+                rating: rating,
+                    date: new Date().toLocaleString("en-IE"),
+                };
+            const response = await axios.post(this.baseUrl + "/api/reviews/" + id + "/pois", review);
+            return response.status == 200;
+        } catch (error) {
+            return false;
+        }
+    }
+
     async addCategory(name, description) {
         try {
             const category = {
@@ -186,6 +212,7 @@ export class PoiService {
 
     async updatePoi(name, descshort, description, latitude, longitude, id, category){
         try {
+            console.log("in updatePOi poi service")
             const poiDetails = {
                 name: name,
                 descshort: descshort,

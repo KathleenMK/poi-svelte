@@ -16,9 +16,7 @@
         console.log(poiList);
     });
 
-   // $: poiList = poiService.getCategoryPois($category.id);
-
-    async function deleteHandler(id) {
+     async function deleteHandler(id) {
         const success = await poiService.deletePoi(id)
         if (success) {
             poiList = await poiService.getPois();   //refreshes the poi list showing only those still remaining

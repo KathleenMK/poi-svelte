@@ -17,7 +17,7 @@
             let success = await poiService.adminlogin(email, password)
             console.log(success);
             if (success) {
-                await push("/admin");
+                await push("/admin");   //alternate landing page for admin login
             } else {
                 email = "";
                 password = "";
@@ -25,9 +25,7 @@
             }
         }
     }
-    //async function login() {
-     //   push("/pois");
-   // }
+
 </script>
 
 <form on:submit|preventDefault={login}>

@@ -1,7 +1,6 @@
 <script>
     import {getContext, onMount} from 'svelte'
     import {push} from "svelte-spa-router";
-    import {category} from "../stores";
 
     const poiService = getContext("PoiService");
     let poiList = [];

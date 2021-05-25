@@ -1,7 +1,5 @@
 <script lang="ts">
     import {mainBar, navBar, subTitle, title} from "../stores";
-    import PoiShow from "../components/PoiShow.svelte";
-    import PoiUpdate from "../components/PoiUpdate.svelte";
     import ViewCategoryPoi from "../components/ViewCategoryPoi.svelte";
     import AnalyticsHeader from "../components/AnalyticsHeader.svelte";
     import CategoryList from "../components/CategoryList.svelte";

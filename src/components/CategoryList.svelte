@@ -7,7 +7,6 @@
     let categoryList;
     let poiFiltered = [];
     let errorMessage = "";
-    //let category = "";
     let category = "";
 
     onMount(async () => {
