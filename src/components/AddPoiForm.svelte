@@ -19,7 +19,7 @@
     async function addPoi() {
         const success = await poiService.addPoi(name, descshort, description, latitude, longitude, categoryList[selectedCategory])
         if (success) {
-            await push("/pois");
+            await push("/pois");    //display the poi list upon addition of new poi
 
         } else {
             errorMessage = "Addition of POI not completed - some error occurred";

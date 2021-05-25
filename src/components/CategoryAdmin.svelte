@@ -1,7 +1,5 @@
 <script>
     import {getContext, onMount} from 'svelte'
-    import {push} from "svelte-spa-router";
-    //import {category} from "../stores";
 
     const poiService = getContext("PoiService");
     let categoryList = [];
@@ -19,7 +17,7 @@
         const success
             = await poiService.deleteCategory(id)
         if (success) {
-            categoryList = await poiService.getCategories();   //refreshes the poi list showing only those still remaining
+            categoryList = await poiService.getCategories();   //refreshes the category list showing only those still remaining
 
         } else {
             errorMessage = "Deletion of POI not completed - some error occurred";
