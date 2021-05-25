@@ -1,8 +1,8 @@
 ## A Svelte Application that manages Points of Interest, specifically beaches
-### Deployed app:
-### [TBC](https:)
+### Netlify deployed app:
+### https://beaches-kmk.netlify.app
 ### based on the API service deployed at:
-### [Heroku](https://lit-hamlet-10675.herokuapp.com/)
+### https://lit-hamlet-10675.herokuapp.com
 ### Git repo here: https://github.com/KathleenMK/poi-web-app
 
 ## Features of the app are:
