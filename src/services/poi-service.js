@@ -34,6 +34,7 @@ export class PoiService {
         }
     }
 
+    // not working
     async getImages() {
         try {
             const response = await axios.get(this.baseUrl + "/api/pois/images")
