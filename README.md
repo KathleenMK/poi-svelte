@@ -12,5 +12,6 @@
 -  Filter by categories
 -  Display the current weather, based on the latitude and longitude, using an OpenWeather API
 -  Administrator login, can delete users and categories
+   (Admin login: admin@gmail.com, password: AdminAdmin1)
 
 This Svelte app has been created using [Vite!](https://vitejs.dev/)
